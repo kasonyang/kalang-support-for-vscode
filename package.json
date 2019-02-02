@@ -1,0 +1,25 @@
+{
+    "name": "kalang-support",
+    "displayName": "Kalang Support",
+    "description": "kalang support",
+    "version": "0.1.0",
+    "engines": {
+        "vscode": "^1.30.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "kalang",
+            "aliases": ["kalang", "kalang"],
+            "extensions": [".kls",".kalang",".kl"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "kalang",
+            "scopeName": "source.kalang",
+            "path": "./syntaxes/kalang.tmLanguage.json"
+        }]
+    }
+}

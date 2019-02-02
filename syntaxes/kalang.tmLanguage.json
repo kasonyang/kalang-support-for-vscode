@@ -1,0 +1,129 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "kalang",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#numbers"
+		},
+		{
+			"include": "#comments"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.control.kalang",
+				"match": "\\b(override|abstract|assert|boolean|break|byte|case|catch|char|class|const|continue|default|do|double|else|enum|extends|final|finally|float|for|if|goto|implements|import|instanceof|int|interface|long|native|new|package|private|protected|public|return|short|static|strictfp|super|switch|synchronized|this|throw|throws|transient|try|void|volatile|while|null|var|val|foreach|as|true|false)\\b"
+			},
+			{
+				"match": "(<<|>>>?|~|\\^)",
+				"name": "keyword.operator.bitwise.kalang"
+			},
+			{
+				"match": "((&|\\^|\\||<<|>>>?)=)",
+				"name": "keyword.operator.assignment.bitwise.kalang"
+			},
+			{
+				"match": "(===?|!=|<=|>=|<>|<|>)",
+				"name": "keyword.operator.comparison.kalang"
+			},
+			{
+				"match": "([+*/%-]=)",
+				"name": "keyword.operator.assignment.arithmetic.kalang"
+			},
+			{
+				"match": "(=)",
+				"name": "keyword.operator.assignment.kalang"
+			},
+			{
+				"match": "(\\-\\-|\\+\\+)",
+				"name": "keyword.operator.increment-decrement.kalang"
+			},
+			{
+				"match": "(\\-|\\+|\\*|\\/|%)",
+				"name": "keyword.operator.arithmetic.kalang"
+			},
+			{
+				"match": "(!|&&|\\|\\|)",
+				"name": "keyword.operator.logical.kalang"
+			},
+			{
+				"match": "(\\||&)",
+				"name": "keyword.operator.bitwise.kalang"
+			}]
+		},
+		"strings": {
+			"name": "string.quoted.double.kalang",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.kalang",
+					"match": "\\\\."
+				}
+			]
+		},
+		"numbers": {
+			"patterns": [
+				{
+					"match": "(?x)\n\\b(?<!\\$)\n0(x|X)\n(\n  (?<!\\.)[0-9a-fA-F]([0-9a-fA-F_]*[0-9a-fA-F])?[Ll]?(?!\\.)\n  |\n  (\n    [0-9a-fA-F]([0-9a-fA-F_]*[0-9a-fA-F])?\\.?\n    |\n    ([0-9a-fA-F]([0-9a-fA-F_]*[0-9a-fA-F])?)?\\.[0-9a-fA-F]([0-9a-fA-F_]*[0-9a-fA-F])?\n  )\n  [Pp][+-]?[0-9]([0-9_]*[0-9])?[FfDd]?\n)\n\\b(?!\\$)",
+					"name": "constant.numeric.hex.kalang"
+				},
+				{
+					"match": "\\b(?<!\\$)0(b|B)[01]([01_]*[01])?[Ll]?\\b(?!\\$)",
+					"name": "constant.numeric.binary.kalang"
+				},
+				{
+					"match": "\\b(?<!\\$)0[0-7]([0-7_]*[0-7])?[Ll]?\\b(?!\\$)",
+					"name": "constant.numeric.octal.kalang"
+				},
+				{
+					"match": "(?x)\n(?<!\\$)\n(\n  \\b[0-9]([0-9_]*[0-9])?\\.\\B(?!\\.)\n  |\n  \\b[0-9]([0-9_]*[0-9])?\\.([Ee][+-]?[0-9]([0-9_]*[0-9])?)[FfDd]?\\b\n  |\n  \\b[0-9]([0-9_]*[0-9])?\\.([Ee][+-]?[0-9]([0-9_]*[0-9])?)?[FfDd]\\b\n  |\n  \\b[0-9]([0-9_]*[0-9])?\\.([0-9]([0-9_]*[0-9])?)([Ee][+-]?[0-9]([0-9_]*[0-9])?)?[FfDd]?\\b\n  |\n  (?<!\\.)\\B\\.[0-9]([0-9_]*[0-9])?([Ee][+-]?[0-9]([0-9_]*[0-9])?)?[FfDd]?\\b\n  |\n  \\b[0-9]([0-9_]*[0-9])?([Ee][+-]?[0-9]([0-9_]*[0-9])?)[FfDd]?\\b\n  |\n  \\b[0-9]([0-9_]*[0-9])?([Ee][+-]?[0-9]([0-9_]*[0-9])?)?[FfDd]\\b\n  |\n  \\b(0|[1-9]([0-9_]*[0-9])?)(?!\\.)[Ll]?\\b\n)\n(?!\\$)",
+					"name": "constant.numeric.decimal.kalang"
+				}
+			]
+		},
+		"comments": {
+			"patterns": [
+				{
+					"begin": "/\\*",
+					"captures": {
+						"0": {
+							"name": "punctuation.definition.comment.kalang"
+						}
+					},
+					"end": "\\*/",
+					"name": "comment.block.kalang"
+				},
+				{
+					"begin": "(^[ \\t]+)?(?=//)",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.whitespace.comment.leading.kalang"
+						}
+					},
+					"end": "(?!\\G)",
+					"patterns": [
+						{
+							"begin": "//",
+							"beginCaptures": {
+								"0": {
+									"name": "punctuation.definition.comment.kalang"
+								}
+							},
+							"end": "\\n",
+							"name": "comment.line.double-slash.kalang"
+						}
+					]
+				}
+			]
+		}
+	},
+	"scopeName": "source.kalang"
+}
